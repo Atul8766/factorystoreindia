@@ -1,117 +1,95 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-    <a href="{{ url('/home') }}" class="brand-link">
-        <span><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person"
-                viewBox="0 0 16 16">
-                <path
-                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-            </svg></span>
-        <span class="brand-text font-weight-light">Admin</span>
-    </a>
-
-    <div
-        class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
-        <div class="os-resize-observer-host observed">
-            <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
-        </div>
-        <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
-            <div class="os-resize-observer"></div>
-        </div>
-        <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 214px;"></div>
-        <div class="os-padding">
-            <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
-                <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
-
-
-
-                    <div class="form-inline">
-                        <div class="input-group" data-widget="sidebar-search">
-                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-sidebar" fdprocessedid="89p148">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="sidebar-search-results">
-                            <div class="list-group"><a href="#" class="list-group-item">
-                                    <div class="search-title"><strong class="text-light"></strong>N<strong
-                                            class="text-light"></strong>o<strong class="text-light"></strong> <strong
-                                            class="text-light"></strong>e<strong class="text-light"></strong>l<strong
-                                            class="text-light"></strong>e<strong class="text-light"></strong>m<strong
-                                            class="text-light"></strong>e<strong class="text-light"></strong>n<strong
-                                            class="text-light"></strong>t<strong class="text-light"></strong> <strong
-                                            class="text-light"></strong>f<strong class="text-light"></strong>o<strong
-                                            class="text-light"></strong>u<strong class="text-light"></strong>n<strong
-                                            class="text-light"></strong>d<strong class="text-light"></strong>!<strong
-                                            class="text-light"></strong></div>
-                                    <div class="search-path"></div>
-                                </a></div>
-                        </div>
-                    </div>
-
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                                data-accordion="false">
-                                <li class="nav-item">
-                                    <a href="{{ url('/home') }}"
-                                        class="nav-link home-add remove-active {{ request()->is('home') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                                        <p>
-                                            Dashboard
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/question') }}"
-                                        class="nav-link question-add remove-active {{ request()->is('question') || request()->is('question/*/edit') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-book"></i>
-                                        <p>
-                                            Question
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/question/create') }}"
-                                        class="nav-link question-add remove-active {{ request()->is('question/create') ? 'active' : '' }}">
-                                        <i class="nav-icon fas fa-edit"></i>
-                                        <p>
-                                            Add Question
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/subjects') }}"
-                                           class="nav-link question-add remove-active {{ request()->is('subjects') || request()->is('subjects/*/edit') ? 'active' : '' }}">
-                                       <i class="nav-icon fas fa-book"></i>
-                                        <p>
-                                            Test Series
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </ul>
-
-                    </nav>
-
-                </div>
-            </div>
-        </div>
-        <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
-            <div class="os-scrollbar-track">
-                <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
-            </div>
-        </div>
-        <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
-            <div class="os-scrollbar-track">
-                <div class="os-scrollbar-handle" style="height: 15.8205%; transform: translate(0px, 0px);"></div>
-            </div>
-        </div>
-        <div class="os-scrollbar-corner"></div>
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+            <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+        </a>
     </div>
-
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/tables.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Tables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/billing.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">receipt_long</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Billing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/virtual-reality.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">view_in_ar</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/rtl.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+                    </div>
+                    <span class="nav-link-text ms-1">RTL</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/notifications.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">notifications</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Notifications</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/profile.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">person</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/sign-in.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">login</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Sign In</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../pages/sign-up.html">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">assignment</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Sign Up</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+        <div class="mx-3">
+            <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
+            <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+        </div>
+    </div>
 </aside>

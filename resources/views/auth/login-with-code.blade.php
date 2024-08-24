@@ -64,7 +64,7 @@
               </div>
               <div class="card-body">
                
-				<form method="POST" action="{{ route('login') }}" role="form" class="text-start">
+				<form method="POST" action="{{ route('login.with.code') }}" role="form" class="text-start">
 				  @csrf
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Enter Your code to Login</label>

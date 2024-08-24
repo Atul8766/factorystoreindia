@@ -22,13 +22,17 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
-		'country_id',        
-        'state_id',         
-        'city_id',   
-		'phone',
+        'country_id',
+        'state_id',
+        'city_id',
+        'phone',
+        'phone_number',   // Add this line
+        'pan_card_id',    // Add this line
+        'upi_id',         // Add this line
         'generated_code',
-		'status'
+        'status'
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.

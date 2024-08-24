@@ -32,27 +32,33 @@ class RegisterController extends Controller
             'country' => ['required', 'exists:countries,id'],
             'state' => ['required', 'exists:states,id'],
             'city' => ['required', 'exists:cities,id'],
+            'phone' => ['required', 'string', 'max:15', 'unique:users'], // Assuming phone numbers are unique
+            'pan_card_id' => ['required', 'string', 'size:10', 'unique:users'], // PAN card has a fixed length of 10 characters
+            'upi_id' => ['required', 'string', 'max:50', 'unique:users'], // Assuming UPI ID has a maximum length
         ]);
     }
 
+
     protected function create(array $data)
     {
+        // dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'country_id' => $data['country'],
             'state_id' => $data['state'],
             'city_id' => $data['city'],
+            'phone' => $data['phone'],
+            'pan_card_id' => $data['pan_card_id'],
+            'upi_id' => $data['upi_id'],
             'generated_code' => $data['code'],
             'password' => Hash::make($data['code']),
         ]);
     }
 
-
-
     protected function generateNumericCode($length = 6)
     {
-       
+
         $code = '';
         do {
             $code = '';
@@ -64,10 +70,10 @@ class RegisterController extends Controller
         return response()->json(['code' => $code]);
     }
 
-    protected function registered($request, $user)
-    {
-        // Set a flash message for the login page
-        session()->flash('status', 'Registration successful. Please log in.');
-        return redirect($this->redirectTo);
-    }
+    // protected function registered($request, $user)
+    // {
+    //     // Set a flash message for the login page
+    //     session()->flash('status', 'Registration successful. Please log in.');
+    //     return redirect($this->redirectTo);
+    // }
 }

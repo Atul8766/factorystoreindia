@@ -11,11 +11,11 @@ class LoginWithCodeController extends Controller
     public function loginWithCode(Request $request)
     {
         $request->validate([
-            'login_code' => 'required|digits:6',
+            'code' => 'required|digits:6',
         ]);
-
-        $user = User::where('login_code', $request->login_code)->where('status', 'approved')->first();
-
+        // dd($request->all());
+        $user = User::where('generated_code', $request->code)->where('status', 'approved')->first();
+        // dd($user);
         if ($user) {
             Auth::login($user);
             return redirect()->route('home'); // Redirect to home or dashboard

@@ -13,7 +13,6 @@ Route::post('/generate-code', [RegisterController::class, 'generateNumericCode']
 
 
 Route::get('/states/{country_id}', function ($country_id) {
-  
     return State::where('country_id', $country_id)->get();
 });
 
