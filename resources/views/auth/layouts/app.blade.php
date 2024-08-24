@@ -18,6 +18,8 @@
 </head>
 <body>
     <div id="app">
+       <input type='hidden' id="fefefeffbas134" value="{{ url('/') }}">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

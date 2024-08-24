@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -15,15 +16,20 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     */ protected $fillable = [
+     */
+    protected $fillable = [
         'name',
         'email',
         'password',
-        'country_id',        // Add country_id
-        'state_id',          // Add state_id
-        'city_id',           // Add city_id
-        'generated_code',    // Add generated_code
+        'type',
+		'country_id',        
+        'state_id',         
+        'city_id',   
+		'phone',
+        'generated_code',
+		'status'
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -45,5 +51,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Interact with the user's first name.
+     *
+     * @param  string  $value
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function type(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["user", "admin", "manager"][$value],
+        );
     }
 }

@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable(); // Added phone field
+            $table->string('country_id')->nullable(); // Added country field
+            $table->string('state_id')->nullable(); // Added state field
+            $table->string('city_id')->nullable(); // Added city field
+            $table->string('status')->default('0'); // Status: 0=>Pending, 1=>Approved
+            $table->string('generated_code')->nullable()->unique(); // Unique login code
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('country_id');
-            $table->string('state_id');
-            $table->string('city_id');
-            $table->string('generated_code');
+            $table->tinyInteger('type')->default(0); // User roles
             $table->rememberToken();
             $table->timestamps();
         });

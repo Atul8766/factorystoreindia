@@ -44,6 +44,7 @@ class RegisterController extends Controller
             'state_id' => $data['state'],
             'city_id' => $data['city'],
             'generated_code' => $data['code'],
+            'password' => Hash::make($data['code']),
         ]);
     }
 
@@ -51,6 +52,7 @@ class RegisterController extends Controller
 
     protected function generateNumericCode($length = 6)
     {
+       
         $code = '';
         do {
             $code = '';

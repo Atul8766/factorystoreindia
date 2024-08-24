@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.app')
 
 @section('content')
 <div class="container">
@@ -119,6 +119,8 @@
     const generateCodeButton = document.getElementById('generate-code-button');
     const generatedCodeInput = document.getElementById('generated-code');
     const submitButton = document.getElementById('submit-button');
+    var base_url = document.getElementById('fefefeffbas134').value;
+
 
     // Check local storage to disable the generate code button
     const codeGenerated = localStorage.getItem('codeGenerated');
@@ -137,7 +139,7 @@
         citySelect.innerHTML = '<option value="">{{ __('Select City') }}</option>';
         
         if (countryId) {
-            fetch(`/states/${countryId}`)
+            fetch(`${base_url}/states/${countryId}`)
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(state => {
@@ -155,7 +157,7 @@
         citySelect.innerHTML = '<option value="">{{ __('Select City') }}</option>';
         
         if (stateId) {
-            fetch(`/cities/${stateId}`)
+            fetch(`${base_url}/cities/${stateId}`)
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(city => {
@@ -173,7 +175,7 @@
         generateCodeButton.disabled = true;
         submitButton.disabled = true;
 
-        fetch('/generate-code', {
+        fetch(`${base_url}/generate-code`, {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
