@@ -11,7 +11,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
         
-          <a class="nav-link text-white {{ request()->is('dashboard') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('/') }}">
+          <a class="nav-link text-white {{ request()->is('user/dashboard') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('user/dashboard') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -21,7 +21,7 @@
        
      
         <li class="nav-item">
-          <a class="nav-link text-white {{ request()->is('customers') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('/customers') }}">
+          <a class="nav-link text-white {{ request()->is('user/customers') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('user/customers') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
              <i class="material-icons opacity-10">person</i>
             </div>
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{ request()->is('commission') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('/commission') }}">
+          <a class="nav-link text-white {{ request()->is('user/commission') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('user/commission') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
              <i class="material-icons opacity-10">person</i>
             </div>
@@ -41,21 +41,21 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{ request()->is('profile') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('/profile') }}">
+          <a class="nav-link text-white {{ request()->is('profile') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('user/profile') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
             <span class="nav-link-text ms-1">Profile</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-white {{ request()->is('/') ? 'active bg-gradient-primary' : '' }}"  href="{{ url('/logout') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">login</i>
             </div>
             <span class="nav-link-text ms-1">Sign Out</span>
           </a>
-        </li>
+        </li> -->
         
       </ul>
     </div>

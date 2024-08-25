@@ -21,7 +21,9 @@
   
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('public/assets/css/material-dashboard.css?v=3.1.0') }}" rel="stylesheet">
-  
+  <style>
+
+  </style>
    
 </head>
 
@@ -53,51 +55,46 @@
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Name</label>
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            
+                                        </div>
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="name-error" role="alert"></span>
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Email</label>
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                          
+                                        </div>
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="email-error" role="alert"></span>
                                         </div>
 
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Phone Number</label>
                                             <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="name" autofocus>
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                           
                                         </div>
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="phone-error" role="alert"></span>
+                                        </div>
+                                        
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">PAN Card Number</label>
                                             <input id="pan_card_id" type="text" class="form-control @error('pan_card_id') is-invalid @enderror" name="pan_card_id" value="{{ old('pan_card_id') }}"  autocomplete="pan_card_id" autofocus>
-                                            @error('pan_card_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                         
+                                        </div>
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="pan_card_id-error" role="alert"></span>
                                         </div>
 
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">UPI ID</label>
                                             <input id="upi_id" type="text" class="form-control @error('upi_id') is-invalid @enderror" name="upi_id" value="{{ old('upi_id') }}"  autocomplete="upi_id" autofocus>
-                                            @error('upi_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                          
                                         </div>
-
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="upi_id-error" role="alert"></span>
+                                        </div>
 
 
                                         <div class="input-group input-group-outline mb-3">
@@ -109,11 +106,11 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('country')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                          
+                                        </div>
+
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="country-error" role="alert"></span>  
                                         </div>
 
 
@@ -121,11 +118,11 @@
                                             <select id="state" class="form-control @error('state') is-invalid @enderror" name="state" >
                                                 <option value="">{{ __('Select State') }}</option>
                                             </select>
-                                            @error('state')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                           
+                                        </div>
+
+                                        <div class="input-group-append mt-2">
+                                         <span class="error text-danger" id="state-error" role="alert"></span>
                                         </div>
 
 
@@ -133,11 +130,11 @@
                                             <select id="city" class="form-control @error('city') is-invalid @enderror" name="city" >
                                                 <option value="">{{ __('Select City') }}</option>
                                             </select>
-                                            @error('city')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                           
+                                        </div>
+
+                                        <div class="input-group-append mt-2">
+                                            <span class="error text-danger" id="city-error" role="alert"></span>
                                         </div>
 
                                         <div class="input-group input-group-outline mb-3">
@@ -213,7 +210,7 @@
                 citySelect.innerHTML = '<option value="">{{ __('Select City ') }}</option>';
 
                 if (countryId) {
-                    fetch(`http://localhost/factorystoreindia/states/${countryId}`)
+                    fetch(`${baseUrl}/states/${countryId}`)
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(state => {
@@ -231,7 +228,7 @@
                 citySelect.innerHTML = '<option value="">{{ __('Select City ') }}</option>';
 
                 if (stateId) {
-                    fetch(`http://localhost/factorystoreindia/cities/${stateId}`)
+                    fetch(`${baseUrl}/cities/${stateId}`)
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(city => {
@@ -249,7 +246,7 @@
                 generateCodeButton.disabled = true;
                 submitButton.disabled = true;
 
-                fetch(`http://localhost/factorystoreindia/generate-code`, {
+                fetch(`${baseUrl}/generate-code`, {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -276,7 +273,64 @@
                         alert('An error occurred while generating the code.');
                     });
             });
+
+            document.getElementById('registration-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                document.getElementById('submit-button').disabled = true;
+                clearErrorMessages();
+
+                const formData = new FormData(this);
+                const formObject = {};
+                formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+
+                fetch(`${baseUrl}/register`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formObject)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data);
+                        // return;
+                        if (data.errors) {
+                            displayErrorMessages(data.errors);
+                        } else if (data.success) {
+                            // alert('Registration successful!');
+                            window.location.href = `${baseUrl}/login/user`; 
+                        } else {
+                            alert('An unexpected error occurred. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while processing your registration.');
+                    })
+                    .finally(() => {
+                        document.getElementById('submit-button').disabled = false; // Re-enable the submit button
+                    });
+            });
+
         });
+
+        function clearErrorMessages() {
+                    document.querySelectorAll('.error').forEach(span => span.textContent = '');
+        }
+
+        function displayErrorMessages(errors) {
+            for (let field in errors) {
+                if (errors.hasOwnProperty(field)) {
+                    document.getElementById(`${field}-error`).textContent = errors[field][0];
+                }
+            }
+        }
+
+       
+
     </script>
 
     <script src="{{ asset('public/assets/js/core/popper.min.js')}}"></script>

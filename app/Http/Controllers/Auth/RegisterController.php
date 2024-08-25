@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Country;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -23,6 +24,30 @@ class RegisterController extends Controller
     {
         $countries = Country::all();
         return view('auth.register', compact('countries'));
+    }
+
+    public function register(Request $request)
+    {
+        // Validate the request data
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            // If validation fails, return a JSON response with errors
+            // dd($validator->errors());
+            return response()->json([
+                'errors' => $validator->errors()
+            ]); // 422 Unprocessable Entity is a common status code for validation errors
+        }
+
+        // If validation passes, proceed with registration
+        $user = $this->create($request->all());
+
+        // Return a success response, or redirect if necessary
+        return response()->json([
+            'success' => true,
+            'message' => 'Registration successful',
+            'user' => $user // Optionally return the user data
+        ], 201); // 201 Created is a common status code for successful resource creation
     }
     protected function validator(array $data)
     {
@@ -58,7 +83,7 @@ class RegisterController extends Controller
 
     protected function generateNumericCode($length = 6)
     {
-       
+
         $code = '';
         do {
             $code = '';
