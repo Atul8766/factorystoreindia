@@ -15,24 +15,30 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>S.No</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Country</th>
                         <th>State</th>
                         <th>City</th>
+                        <th>Status</th>
                       
                     </tr>
                 </thead>
                 <tbody>
+                
                     @foreach ($userData as $user)
                         <tr>
-                            <td>{{ $user['id'] }}</td>
+                            <td>{{$loop->iteration }}</td>
                             <td>{{ $user['name'] }}</td>
                             <td>{{ $user['email'] }}</td>
                             <td>{{ $user['country_name'] }}</td>
                             <td>{{ $user['state_name'] }}</td>
                             <td>{{ $user['city_name'] }}</td>
+                            <td>
+                            <div style='opacity: 0;'>{{ $user['status'] ? 'Active' : 'Inactive' }}</div>
+            <input type="checkbox" class="status-toggle" data-id="{{ $user['id'] }}" {{ $user['status'] ? 'checked' : '' }} data-toggle="toggle" data-onlabel="Active" data-offlabel="Inactive" data-onstyle="success" data-offstyle="danger">
+        </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,8 +54,56 @@
     <script>
     
         document.addEventListener('DOMContentLoaded', function() {
-        $('#myTable').DataTable();
-          
+         $('#myTable').DataTable({
+        dom: 'Bfrtip',  // Add this option to enable buttons
+        buttons: [ 'csv', 'excel', 'pdf', 'print'] // Add buttons here
+    });
+          $(document).ready(function(){
+    $('.status-toggle').change(function() {
+        var userId = $(this).data('id'); // Get user ID
+        var newStatus = $(this).prop('checked') ? 1 : 0; // Check if active or inactive
+
+        // AJAX request
+        $.ajax({
+            url: '{{ route("updateUserStatus") }}',  // Route to the controller method
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',  // Laravel CSRF token for security
+                id: userId,
+                status: newStatus
+            },
+            success: function(response) {
+                // Optionally show a success message
+                 showBootstrapAlert('User status updated successfully!', 'success');
+            },
+            error: function(xhr, status, error) {
+                // Optionally show an error message
+             showBootstrapAlert('Error updating user status!', 'danger');
+            }
+        });
+    });
+});
+
        });
+ function showBootstrapAlert(message, type) {
+        // Remove any existing alert
+        $('#bootstrapAlert').remove();
+
+        // Create the alert HTML
+        var alertHtml = `
+            <div id="bootstrapAlert" class="alert alert-${type} alert-dismissible fade show" role="alert" style="position: fixed; top: 10px; right: 10px; z-index: 9999; color:white;">
+                ${message}
+               
+            </div>
+        `;
+
+        // Append the alert to the body
+        $('body').append(alertHtml);
+
+        // Auto close the alert after 5 seconds
+        setTimeout(function() {
+            $('#bootstrapAlert').alert('close');
+        }, 5000);
+    }
     </script>
 @endsection

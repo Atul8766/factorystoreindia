@@ -6,12 +6,6 @@
 <div class="container">
     <h2>Update Profile</h2>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form action="{{ route('user.profile.update') }}" method="POST">
         @csrf
         @method('PUT')

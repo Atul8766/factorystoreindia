@@ -4,7 +4,7 @@
 <div class="container">
     <h2>Update Customer</h2>
 
-    <form action="{{ route('user.customers.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('customers.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <!-- Name Field -->

@@ -109,3 +109,15 @@
         </div>
       </div>
     </nav>
+       @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 2px; right: 2px; color:white">
+        {{ session('success') }}
+       
+    </div>
+
+    <script>
+        setTimeout(function() {
+            $('.alert').alert('close');
+        }, 5000); // 5000ms = 5 seconds
+    </script>
+@endif

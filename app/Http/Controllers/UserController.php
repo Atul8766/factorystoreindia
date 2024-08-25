@@ -1,18 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
-    public function index()
-    {
-
+    public function index(){
+       
         return view('user.home');
     }
-
+    
+    public function customers(){
+       
+        return view('user.customers');
+    }
+    public function commission(){
+       
+        return view('user.commission');
+    }
+    public function profile(){
+       
+        return view('user.profile');
+    }
     public function editProfile()
     {
         $user = Auth::user();
@@ -48,18 +59,5 @@ class UserController extends Controller
         $user->update($request->only('name', 'email'));
 
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');
-    }
-    public function customers()
-    {
-        return view('user.customers');
-    }
-    public function commission()
-    {
-
-        return view('user.commission');
-    }
-    public function profile()
-    {
-        return view('user.profile');
     }
 }

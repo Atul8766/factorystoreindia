@@ -4,7 +4,7 @@
 <div class="container">
     <h2>Add New Customer</h2>
 
-    <form action="{{ route('user.customers.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Name Field -->

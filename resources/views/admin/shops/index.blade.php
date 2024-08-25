@@ -23,7 +23,7 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>S.No</th>
                         <th>Name</th>
                         <th>Logo</th>
                         <th>Address</th>
@@ -33,9 +33,10 @@
                     </tr>
                 </thead>
                  <tbody>
+               
             @foreach($shops as $shop)
             <tr>
-                <td>{{ $shop->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $shop->name }}</td>
                 <td><img src="{{ asset('storage/app/' . $shop->logo) }}" width="50" alt="Logo"></td>
                 <td>{{ $shop->address }}</td>

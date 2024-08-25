@@ -7,7 +7,7 @@
        <h2>Dashboard</h2>
     </div>
     <div class="col-5 text-end">
-        <a href="{{ route('admin.shops.create') }}" class="btn btn-primary">Add Shop</a>
+        
     </div>
 <div class="container-fluid py-4">
 

@@ -17,10 +17,10 @@ class LoginWithCodeController extends Controller
     $user = User::where('generated_code', $request->code)
                 ->where('status', '1')
                 ->first();
-    // dd($user);
+    
     if ($user) {
         Auth::login($user);
-        return redirect()->route('user.dashboard'); // Redirect to home or dashboard
+        return redirect()->route('home'); // Redirect to home or dashboard
     }
 
     return redirect()->back()->withErrors(['code' => 'Invalid or unapproved code']);
