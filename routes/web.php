@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginWithCodeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\State;
 use App\Models\City;
+use App\Http\Controllers\ShopController;
 
 Route::post('/generate-code', [RegisterController::class, 'generateNumericCode']);
 
@@ -36,27 +39,29 @@ Auth::routes();
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('home');
 });
   
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
+
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect('/login');
+    })->name('logout.admin');
+
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    
+    Route::get('/admin/customers', [AdminController::class, 'customers'])->name('admin.customers');
+    Route::get('/admin/commission', [AdminController::class, 'commission'])->name('admin.commission');
+    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('shops', ShopController::class);
+    });
   
-    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
   
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'user-access:manager'])->group(function () {
-  
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-});
+
+
 
 
