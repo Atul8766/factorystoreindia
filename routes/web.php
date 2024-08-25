@@ -43,6 +43,8 @@ Auth::routes();
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('user/profile', [UserController::class, 'editProfile'])->name('user.profile');
+    Route::put('user/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::resource('customers', CustomerController::class);
@@ -58,10 +60,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.home');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('admin/profile', [AdminController::class, 'editProfile'])->name('admin.profile');
+    Route::put('admin/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
 
     Route::get('/admin/customers', [AdminController::class, 'customers'])->name('admin.customers');
     Route::get('/admin/commission', [AdminController::class, 'commission'])->name('admin.commission');
-    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('shops', ShopController::class);
     });
