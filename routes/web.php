@@ -11,8 +11,10 @@ use App\Models\State;
 use App\Models\City;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\WhatsAppController;
 
-Route::post('/generate-code', [RegisterController::class, 'generateNumericCode']);
+Route::post('/generate-code', [RegisterController::class, 'generateNumericCode']); 
+// Route::post('/register', [RegisterController::class, 'register']); 
 
 
 Route::get('/states/{country_id}', function ($country_id) {
@@ -74,6 +76,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('admin/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
 });
   
+
+
+Route::get('/whatsapp_page', [WhatsAppController::class, 'index']);
+Route::post('whatsapp', [WhatsAppController::class, 'store']);
 
 
 

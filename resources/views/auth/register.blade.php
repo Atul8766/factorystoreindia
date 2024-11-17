@@ -52,14 +52,17 @@
                                     <p class="mb-0">Enter your email and password to register</p>
                                 </div>
                                 <div class="card-body">
-                                    <form id="registration-form" method="POST" action="{{ route('register') }}">
+                                    <form id="registration-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                         @csrf
+                                        <div class="input-group input-group-outline mb-3">
+                                            <!-- <label class="form-label">Image</label> -->
+                                            <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}">
+                                        </div>
                                         <div class="input-group input-group-outline mb-3">
                                             <label class="form-label">Name</label>
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
                                                 value="{{ old('name') }}" autocomplete="name" autofocus>
-
                                         </div>
                                         <div class="input-group-append mt-2">
                                             <span class="error text-danger" id="name-error" role="alert"></span>
@@ -275,8 +278,7 @@
                 fetch(`${baseUrl}/generate-code`, {
                         method: 'POST',
                         headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                .getAttribute('content'),
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -289,8 +291,8 @@
                     .then(data => {
                         if (data.code) {
                             generatedCodeInput.value = data.code;
-                            submitButton.disabled = false; // Enable the submit button
-                            localStorage.setItem('codeGenerated', true); // Mark code as generated
+                            submitButton.disabled = false; 
+                            localStorage.setItem('codeGenerated', true); 
                         } else {
                             alert('Failed to generate code. Please check your inputs.');
                         }
@@ -303,46 +305,36 @@
 
             document.getElementById('registration-form').addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent the default form submission
-                document.getElementById('submit-button').disabled = true;
                 clearErrorMessages();
 
                 const formData = new FormData(this);
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
 
                 fetch(`${baseUrl}/register`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                .getAttribute('content'),
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formObject)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // console.log(data);
-                        // return;
-                        if (data.errors) {
-                            displayErrorMessages(data.errors);
-                        } else if (data.success) {
-                            // alert('Registration successful!');
-                            window.location.href = `${baseUrl}/login/user`;
-                        } else {
-                            alert('An unexpected error occurred. Please try again.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while processing your registration.');
-                    })
-                    .finally(() => {
-                        document.getElementById('submit-button').disabled =
-                        false; // Re-enable the submit button
-                    });
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.errors) {
+                        displayErrorMessages(data.errors);
+                    } else if (data.success) {
+                        window.location.href = `${baseUrl}/login/user`;
+                    } else {
+                        alert('An unexpected error occurred. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while processing your registration.');
+                })
+                .finally(() => {
+                    document.getElementById('submit-button').disabled = false; // Re-enable the submit button
+                });
             });
+
 
         });
 

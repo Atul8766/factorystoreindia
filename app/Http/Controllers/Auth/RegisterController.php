@@ -28,9 +28,9 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Validate the request data
+        // dd($request->all());SSS
         $validator = $this->validator($request->all());
-
+        
         if ($validator->fails()) {
             // If validation fails, return a JSON response with errors
             // dd($validator->errors());
